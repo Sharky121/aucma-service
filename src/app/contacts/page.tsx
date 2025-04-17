@@ -1,9 +1,9 @@
 import styles from './page.module.scss';
 
-export default function Home() {
+export default function Contacts() {
   return (
     <main className={styles.main}>
-      <h1>Главная страница</h1>
+      <h1>Контакты</h1>
     </main>
   );
-}
+} 

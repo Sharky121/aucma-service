@@ -1,0 +1,31 @@
+@use './variables';
+
+@mixin mobile-width-only {
+  @media (max-width: #{variables.$mobile-width-only}) {
+    @content;
+  }
+}
+
+@mixin tablet-width-only {
+  @media (max-width: #{variables.$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-size {
+  @media (min-width: #{variables.$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin desktop-size {
+  @media (min-width: #{variables.$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin retina {
+  @media (min-resolution: #{variables.$retina-dpi}), (min-resolution: #{variables.$retina-dpi}) {
+    @content;
+  }
+}
