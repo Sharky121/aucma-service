@@ -1,0 +1,45 @@
+@use '../../styles/abstracts' as var;
+
+.input {
+    width: 100%;
+    padding: 20px;
+
+    font-size: 14px;
+    font-style: italic;
+    color: var.$brand-black;
+
+    border: 2px solid var.$brand-grey;
+    border-radius: 10px;
+    box-shadow: none;
+    background-color: var.$brand-grey;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    &::placeholder {
+        font-size: 14px;
+        color: var.$brand-black;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: var.$brand-light;
+    }
+
+    &:focus-visible {
+        outline: none;
+        border-color: var.$brand-light;
+    }
+}
+
+.themeSecondary {
+    color: var.$brand-white;
+
+    background-color: var.$brand-black;
+    border: none;
+
+    &::placeholder {
+        color: var.$brand-white;
+    }
+}

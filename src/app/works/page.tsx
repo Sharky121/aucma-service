@@ -1,9 +1,9 @@
 import styles from './page.module.scss';
 
-export default function Pricelist() {
+export default function Works() {
   return (
     <main className={styles.main}>
-      <h1>Прайс-лист</h1>
+      <h1>Наши работы</h1>
     </main>
   );
 } 

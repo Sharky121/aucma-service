@@ -1,0 +1,59 @@
+@use './../../styles/abstracts' as var;
+
+.price__container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+@include var.tablet-size {
+
+    .price {
+        position: relative;
+
+        &::before {
+            content: '';
+
+            position: absolute;
+            left: calc(((100% - var.$tablet-width) / 2) + 560px);
+            top: 320px;
+
+            display: block;
+            width: 100%;
+            height: 1px;
+
+            background-color: var.$brand-grey-second;
+        }
+    }
+
+    .price__container {
+        padding-top: 60px;
+        padding-bottom: 100px;
+
+        text-align: center;
+    }
+
+    .price__calc {
+        width: auto;
+        margin-top: 60px;
+    }
+}
+
+@include var.desktop-size {
+
+    .price {
+
+        &::before {
+            left: calc(((100% - var.$desktop-width) / 2) + 560px);
+        }
+    }
+}
+
+@include var.large-size {
+
+    .price {
+
+        &::before {
+            left: calc(((100% - var.$large-width) / 2) + 560px);
+        }
+    }
+}

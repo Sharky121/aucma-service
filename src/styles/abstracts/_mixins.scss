@@ -24,6 +24,12 @@
   }
 }
 
+@mixin large-size {
+  @media (min-width: #{variables.$large-width}) {
+    @content;
+  }
+}
+
 @mixin retina {
   @media (min-resolution: #{variables.$retina-dpi}), (min-resolution: #{variables.$retina-dpi}) {
     @content;

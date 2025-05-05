@@ -1,4 +1,5 @@
-@use '@/styles/abstracts' as *;
+@use '@/styles/abstracts' as var;
+
 @import '@/styles/vendor/normalize';
 
 * {
@@ -14,6 +15,7 @@ body {
   height: 100%;
 
   font-size: 14px;
+  line-height: 1.5;
 
   scroll-behavior: smooth;
 
@@ -21,9 +23,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.body__wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.body__main {
+  flex-grow: 2;
+}
+
+.body__footer {
+  margin-top: -20px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
 }
 
 section {
@@ -48,4 +68,11 @@ section {
 
 button {
   @extend %btn-reset;
+}
+
+@include var.desktop-size {
+
+  .body__footer {
+    margin-top: -60px;
+  }
 }

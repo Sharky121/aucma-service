@@ -1,9 +1,13 @@
+import QuestionSection from '@/components/question-section/question-section';
+import FeaturesSection from '@/components/features-section/features-section';
+
 import styles from './page.module.scss';
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <h1>Главная страница</h1>
+    <main className={`${styles.body__main}`}>
+      <FeaturesSection />
+      <QuestionSection />
     </main>
   );
 }

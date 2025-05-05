@@ -1,0 +1,44 @@
+@use '../../styles/abstracts' as var;
+
+.headerContacts__info,
+.headerContacts__callback {
+    display: none;
+}
+
+@include var.tablet-size {
+
+    .headerContacts {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .headerContacts__mobilePhone {
+        display: none;
+    }
+
+    .headerContacts__info {
+        display: block;
+
+        text-align: right;
+    }
+
+    .headerContacts__callback {
+        display: block;
+        margin-left: 25px;
+    }
+
+    .headerContacts__desktopPhone {
+        font-weight: 800;
+        font-size: 26px;
+        line-height: 1;
+    }
+
+    .headerContacts__address {
+        margin-top: 2px;
+        
+        font-size: 12px;
+        line-height: 1;
+        font-style: normal;
+    }
+}

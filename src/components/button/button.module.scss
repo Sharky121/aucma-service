@@ -1,0 +1,44 @@
+@use '../../styles/abstracts' as var;
+
+.button {
+    @extend %btn-reset;
+
+    padding: 15px 35px;
+
+    color: #ffffff;
+    font-size: 16px;
+
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border: 4px solid var.$brand-danger;
+
+    box-shadow: 0 6px 15px rgba(var.$brand-danger, 0.4);
+}
+
+.button__text {
+    color: inherit;
+    font-size: inherit;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.button--danger {
+    background-color: var.$brand-danger;
+
+    &:hover,
+    &:active {
+        color: var.$brand-danger;
+
+        background-color: #ffffff;
+    }
+
+    &:focus {
+        color: var.$brand-danger;
+
+        background-color: #ffffff;
+    }
+}
+
+.button--small {
+    padding: 8px 35px;
+}

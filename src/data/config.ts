@@ -1,0 +1,1 @@
+export const phone = 79005481212;

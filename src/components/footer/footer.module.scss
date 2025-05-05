@@ -1,12 +1,312 @@
+@use '../../styles/abstracts' as var;
+
 .footer {
-  background-color: #f5f5f5;
-  padding: 2rem 0;
-  margin-top: auto;
+  position: relative;
+
+  color: var.$brand-white;
+
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: var.$brand-black;
+
+  z-index: 1;
 }
 
-.content {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  color: #666;
-} 
+.footerContainer {
+  position: relative;
+
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    right: 0;
+    bottom: 195px;
+    
+    display: block;
+    width: 300px;
+    height: 211px;
+
+    background-image: url('/truck_bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transform: scaleX(-1);
+
+    opacity: 0.1;
+  }
+}
+
+.footerDescription {
+  margin: 40px 0;
+
+  color: var.$brand-white;
+  opacity: .4;
+}
+
+.footerNav {
+  margin-bottom: 40px;
+}
+
+.footerNavList {
+  @extend %list-reset;
+}
+
+.footerNavItem {
+  margin-bottom: 35px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.footerNavLink {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+
+  &:hover,
+  &:active {
+      color: var.$brand-danger;
+  }
+
+  &:focus {
+      color: var.$brand-danger;
+  }
+}
+
+.footerContacts {
+  margin-bottom: 40px;
+}
+
+.footerContactsTerm {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.footerContactsItem {
+  margin-bottom: 25px;
+
+  &:last-child {
+    margin-bottom: 0
+  }
+}
+
+.footerContactsDesc {
+  font-size: 16px;
+
+  a:hover,
+  a:active {
+        color: var.$brand-danger;
+    }
+  
+  a:focus {
+      color: var.$brand-danger;
+  }
+}
+
+.footerSocial {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.footerSocialTitle {
+  margin: 0;
+
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.footerSocialList {
+  @extend %list-reset;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 15px;
+  gap: 12px;
+}
+
+.footerSocialItemLink {
+  display: inline-block;
+  vertical-align: middle;
+
+  svg {
+    vertical-align: middle;
+  }
+}
+
+.footerSocialItemLinkTg {
+  &:hover,
+  &:active {
+      color: var.$brand-tg;
+  }
+
+  &:focus {
+      color: var.$brand-tg;
+  }
+}
+
+.footerSocialItemLinkWa {
+  &:hover,
+  &:active {
+      color: var.$brand-wa;
+  }
+
+  &:focus {
+      color: var.$brand-wa;
+  }
+}
+
+.footerCallback {
+  margin-bottom: 20px;
+}
+
+.footerCallbackButton {
+  width: 100%;
+}
+
+@include var.tablet-size {
+
+  .footerContainer {
+    display: grid;
+    grid-template-columns: 330px 1fr 250px;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+      "logo nav nav"
+      "desc . contacts"
+      "callback . contacts"
+      "copyright . social";
+    row-gap: 40px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  
+
+    font-size: 16px;
+
+    &::before {
+      right: 50%;
+      bottom: 0;
+      
+      width: 420px;
+      height: 296px;
+      margin-right: -210px;
+    }
+  }
+
+  .footerLogo {
+    grid-area: logo;
+  }
+
+  .footerNav {
+    grid-area: nav;
+    justify-self: end;
+    margin: 0;
+  }
+
+  .footerNavList {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .footerNavItem {
+    margin-bottom: 0;
+  }
+
+  .footerDescription {
+    grid-area: desc;
+    margin: 0;
+  }
+
+  .footerContacts {
+    grid-area: contacts;
+    justify-self: start;
+    margin: 0;
+  }
+
+  .footerCallback {
+    grid-area: callback;
+    align-self: end;
+    margin: 0;
+  }
+
+  .footerCopyright {
+    grid-area: copyright;
+    align-self: center;
+  }
+
+  .footerSocial {
+    grid-area: social;
+    justify-self: start;
+    align-self: center;
+    margin: 0;
+  }
+
+  .footerSocialTitle {
+    font-size: 16px;
+  }
+}
+
+@include var.desktop-size {
+
+  .footer {
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+  }
+
+  .footerContainer {
+    grid-template-columns: 640px 225px 1fr;
+    grid-template-areas:
+      "logo nav nav"
+      "desc contacts callback"
+      "copyright contacts social";
+    padding-top: 115px;
+    padding-bottom: 115px;
+
+
+      &::before {
+        width: 620px;
+        height: 437px;
+        margin-right: -310px;
+      }
+  }
+
+  .footerNav {
+    justify-self: start;
+  }
+
+  .footerDescription {
+    max-width: 380px;
+  }
+
+  .footerCallback {
+    justify-self: end;
+    align-self: start;
+  }
+
+  .footerCallbackButton {
+    width: auto;
+  }
+
+  .footerSocial {
+    justify-self: end;
+  }
+}

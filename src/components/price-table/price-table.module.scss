@@ -1,0 +1,149 @@
+@use './../../styles/abstracts' as var;
+
+.price__table {
+    margin-top: 40px;
+}
+
+.price__tab {
+    margin-top: 40px;
+}
+
+.priceTab__list {
+    @extend %list-reset;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.priceTab__button {
+    height: 100%;
+    padding: 15px 20px;
+
+    color: var.$brand-black;
+    font-size: 14px;
+
+    border-radius: 0;
+    background-color: var.$brand-white;
+    border-color: var.$brand-white;
+}
+
+.priceTab__item:first-child .priceTab__button {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.priceTab__item:last-child .priceTab__button {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.priceTab__itemActive .priceTab__button {
+    background-color: var.$brand-white;
+    border-color: var.$brand-danger;
+}
+
+.priceTable {
+    width: 100%;
+    border-collapse: collapse;
+
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.priceTable__head {
+    display: none;
+}
+
+.priceTable__tr {
+    display: block;
+    padding: 10px 15px;
+
+    &:nth-child(odd) {
+        background-color: var.$brand-grey;
+    }
+
+    &:last-of-type {
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+}
+
+.priceTable__td {
+    display: block;
+    margin-bottom: 15px;
+
+    &:last-of-type {
+        margin-bottom: 0;
+
+        font-weight: 600;
+    }
+}
+
+.price__calc {
+    width: 100%;
+    margin-top: 40px;
+}
+
+@include var.tablet-size {
+
+    .priceTable__head {
+        display: table-header-group;
+    }
+
+    .priceTable__tr {
+        display: table-row;
+    }
+
+    .priceTable__th {
+        padding: 30px 35px;
+
+        font-size: 18px;
+        color: var.$brand-white;
+
+        background-color: var.$brand-danger;
+
+        &:first-of-type {
+            text-align: left;
+        }
+    }
+
+    .priceTable__td {
+        display: table-cell;
+        padding: 12px 30px;
+
+        &:first-of-type {
+            text-align: left;
+        }
+    }
+
+    .price__tab {
+        margin-top: 60px;
+    }
+
+    .priceTab__list {
+        gap: 20px;
+    }
+
+    .priceTab__button {
+        font-size: 16px;
+    }
+
+    .priceTab__item:first-child .priceTab__button {
+        border-bottom-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-top-left-radius: 0;
+    }
+    
+    .priceTab__item:last-child .priceTab__button {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 15px;
+    }
+    
+    .priceTab__itemActive .priceTab__button {
+        background-color: var.$brand-white;
+        border: 4px solid var.$brand-danger;
+    }
+}

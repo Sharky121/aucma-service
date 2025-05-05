@@ -1,0 +1,36 @@
+@use '../../styles/abstracts' as var;
+
+.container {
+    max-width: var.$mobile-width;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@include var.tablet-size {
+
+    .container {
+        max-width: var.$tablet-width;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@include var.desktop-size {
+
+    .container {
+        max-width: var.$desktop-width;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+@include var.desktop-size {
+
+    .container {
+        max-width: var.$large-width;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}

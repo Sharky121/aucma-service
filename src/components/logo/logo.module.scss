@@ -1,0 +1,25 @@
+@use '../../styles/abstracts' as var;
+
+.logo {
+    position: relative;
+}
+
+.logo__img {
+    vertical-align: middle;
+}
+
+@include var.tablet-size {
+
+    .logo__img {
+        width: 199px;
+        height: 39px;
+    }
+}
+
+@include var.desktop-size {
+    
+    .logo__img {
+        width: 288px;
+        height: 57px;
+    }
+}

@@ -1,0 +1,25 @@
+@use '../../styles/abstracts' as var;
+
+.navList {
+    @extend %list-reset;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 45px;
+}
+
+.navItemLink {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000000;
+
+    &:hover,
+    &:active {
+        color: var.$brand-danger;
+    }
+
+    &:focus {
+        color: var.$brand-danger;
+    }
+}
