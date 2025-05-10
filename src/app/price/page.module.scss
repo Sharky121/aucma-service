@@ -1,6 +1,6 @@
 @use './../../styles/abstracts' as var;
 
-.price__container {
+.price {
     padding-top: 40px;
     padding-bottom: 40px;
 }
@@ -9,12 +9,12 @@
 
     .price {
         position: relative;
+
+        padding-top: 60px;
+        padding-bottom: 100px;
     }
 
     .price__container {
-        padding-top: 60px;
-        padding-bottom: 100px;
-
         text-align: center;
     }
 
