@@ -12,11 +12,13 @@ export default function Price() {
       <section className={styles.price}>
         <Container customClassName={styles.price__container}>
           <Heading subtitle='Цены на услуги' title='Прайс-лист на услуги' customCssClass={styles.price__heading}>
-            Все работы выполняются по заводским технологиям с использованием оригинальных комплектующих и, рекомендованных заводом изготовителем, расходных материалов.
+              Все работы выполняются по заводским технологиям с использованием оригинальных комплектующих и, рекомендованных заводом изготовителем, расходных материалов.
           </Heading>
+        </Container>
           
-          <PriceTable />
-
+        <PriceTable />
+        
+        <Container>
           <Button customСlassName={styles.price__calc} color='danger'>Рассчитать стоимость</Button>
         </Container>
       </section>

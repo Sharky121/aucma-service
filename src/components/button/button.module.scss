@@ -3,16 +3,26 @@
 .button {
     @extend %btn-reset;
 
-    padding: 15px 35px;
+    padding: 17px 35px;
 
-    color: #ffffff;
+    color: var.$brand-black;
     font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
 
+    background-color: var.$brand-white;
     border-bottom-left-radius: 15px;
     border-top-right-radius: 15px;
-    border: 4px solid var.$brand-danger;
+    border: 3px solid var.$brand-danger;
 
     box-shadow: 0 6px 15px rgba(var.$brand-danger, 0.4);
+
+    &:hover,
+    &:active {
+        color: var.$brand-white;
+
+        background-color: var.$brand-danger;
+    }
 }
 
 .button__text {
@@ -23,6 +33,8 @@
 }
 
 .button--danger {
+    color: var.$brand-white;
+
     background-color: var.$brand-danger;
 
     &:hover,

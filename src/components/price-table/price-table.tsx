@@ -5,6 +5,7 @@ import styles from './price-table.module.scss';
 
 import { prices } from '@/data/prices';
 import Button from '../button/button';
+import Container from '../container/container';
 
 type PriceItem = {
     title: string;
@@ -25,51 +26,41 @@ const PriceTable = () => {
         toggleTableHandle('izo');
     }, [toggleTableHandle]);
 
-    const isActiveTab = (tabType: 'izo' | 'semi') => tabType === activeTab;
-
     return (
         <>
-            <div className={styles.price__tab}>
-                <ul className={styles.priceTab__list}>
-                    {['izo', 'semi'].map((tab) => (
-                        <li 
-                            key={tab}
-                            className={`${styles.priceTab__item} ${
-                                isActiveTab(tab as 'izo' | 'semi') ? styles.priceTab__itemActive : ''
-                            }`}
-                        >
-                            <Button 
-                                color='danger' 
-                                customСlassName={styles.priceTab__button} 
-                                onClick={() => toggleTableHandle(tab as 'izo' | 'semi')}
-                            >
-                                {tab === 'izo' ? 'Изотермические фургоны' : 'Полуприцепы'}
-                            </Button>
-                        </li>
-                    ))}
+            <div className={`${styles.price__tabs} ${styles.tabs}`}>
+                <ul className={styles.tabs__list}>
+                    <li className={styles.tabs__item}>
+                        <Button customСlassName={`${styles.tabs__button} ${activeTab === 'izo' ? styles.active : ''}`} onClick={() => toggleTableHandle('izo')}>Изотермические фургоны</Button>
+                    </li>
+                    <li className={styles.tabs__item}>
+                        <Button customСlassName={`${styles.tabs__button} ${activeTab === 'semi' ? styles.active : ''}`} onClick={() => toggleTableHandle('semi')}>Полуприцепы</Button>
+                    </li>
                 </ul>
             </div>
 
-            <div className={styles.price__table}>
-                <table className={styles.priceTable}>
-                <thead className={styles.priceTable__head}>
-                    <tr className={styles.priceTable__tr}>
-                    <th className={styles.priceTable__th}>Услуга</th>
-                    <th className={styles.priceTable__th}>Цена</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        priceTable.map((item, index) => (
-                            <tr key={`${item.title}-${index}`} className={styles.priceTable__tr}>
-                                <td className={styles.priceTable__td}>{item.title}</td>
-                                <td className={styles.priceTable__td}>{item.value.toLocaleString('ru-RU')}&nbsp;&#x20BD;</td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-                </table>
-            </div>
+            <Container>
+                <div className={styles.price__table}>
+                    <table className={styles.priceTable}>
+                    <thead className={styles.priceTable__head}>
+                        <tr className={styles.priceTable__tr}>
+                        <th className={styles.priceTable__th}>Услуга</th>
+                        <th className={styles.priceTable__th}>Цена</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            priceTable.map((item, index) => (
+                                <tr key={`${item.title}-${index}`} className={styles.priceTable__tr}>
+                                    <td className={styles.priceTable__td}>{item.title}</td>
+                                    <td className={styles.priceTable__td}>{item.value.toLocaleString('ru-RU')}&nbsp;&#x20BD;</td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                    </table>
+                </div>
+            </Container>
         </>
     )
 }

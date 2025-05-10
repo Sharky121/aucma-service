@@ -26,11 +26,9 @@
     }
 }
 
-@include var.desktop-size {
+@include var.large-size {
 
     .container {
         max-width: var.$large-width;
-        padding-left: 40px;
-        padding-right: 40px;
     }
 }
