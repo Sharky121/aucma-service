@@ -13,31 +13,6 @@ interface YandexMapsProps {
   children: React.ReactNode;
 }
 
-interface MapProps {
-  defaultState: {
-    center: [number, number];
-    zoom: number;
-    controls: string[];
-  };
-  className?: string;
-  modules: string[];
-  children: React.ReactNode;
-}
-
-interface PlacemarkProps {
-  geometry: [number, number];
-  properties: {
-    balloonContent: string;
-  };
-  options: {
-    iconLayout: string;
-    iconImageHref: string;
-    iconImageSize: [number, number];
-    iconImageOffset: [number, number];
-  };
-  modules: string[];
-}
-
 type YandexMapType = {
   customCssClass?: string;
 }
