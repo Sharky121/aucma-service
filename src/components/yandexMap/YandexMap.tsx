@@ -2,10 +2,41 @@
 
 import { useEffect, useState } from 'react';
 
+type YandexMapLang = 'ru_RU' | 'tr_TR' | 'en_US' | 'en_RU' | 'ru_UA' | 'uk_UA';
+
 interface MapComponents {
-  YMaps: React.ComponentType<any>;
-  Map: React.ComponentType<any>;
-  Placemark: React.ComponentType<any>;
+  YMaps: React.ComponentType<{
+    query: {
+      apikey?: string;
+      lang: YandexMapLang;
+      load: string;
+    };
+    version: string;
+    children: React.ReactNode;
+  }>;
+  Map: React.ComponentType<{
+    defaultState: {
+      center: [number, number];
+      zoom: number;
+      controls: string[];
+    };
+    className?: string;
+    modules: string[];
+    children: React.ReactNode;
+  }>;
+  Placemark: React.ComponentType<{
+    geometry: [number, number];
+    properties: {
+      balloonContent: string;
+    };
+    options: {
+      iconLayout: string;
+      iconImageHref: string;
+      iconImageSize: [number, number];
+      iconImageOffset: [number, number];
+    };
+    modules: string[];
+  }>;
 }
 
 type YandexMapType = {
@@ -38,7 +69,7 @@ const YandexMap = ({customCssClass}: YandexMapType) => {
     <YMaps
       query={{
         apikey: process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY,
-        lang: 'ru_RU',
+        lang: 'ru_RU' as YandexMapLang,
         load: 'package.full'
       }}
       version="2.1"

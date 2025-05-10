@@ -1,10 +1,6 @@
 import styles from './hamburger.module.scss';
 
-interface HamburgerProps {
-    color?: string;
-}
-
-const Hamburger = ({ color = 'var.$brand-black' }: HamburgerProps) => {
+const Hamburger = () => {
     return (
         <>
             <div className={styles.hamburgerMenu}>
