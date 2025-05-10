@@ -1,0 +1,57 @@
+@use '../../styles/abstracts' as var;
+
+.faq__container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.faq__heading {
+    margin-bottom: 30px;
+}
+
+.faq__list {
+    @extend %list-reset;
+}
+
+.faq__item {
+    margin-bottom: 10px;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+@include var.tablet-size {
+
+    .faq__container {
+        padding-top: 60px;
+        padding-bottom: 80px;
+    }
+
+    .faq__heading {
+        margin-bottom: 50px;
+    }
+}
+
+@include var.desktop-size {
+
+    .faq__container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 150px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        
+        background-image: url('/wrench_bg.png');
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        background-size: 230px 409px;
+    }
+
+    .faq__heading {
+        flex-shrink: 0;
+        width: 410px;
+        margin-bottom: 0;
+    }
+}

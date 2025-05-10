@@ -1,0 +1,83 @@
+@use '../../styles/abstracts' as var;
+
+.accordion {
+    background-color: var.$brand-grey;
+
+    border-radius: 15px;
+    font-size: 14px;
+
+    overflow: hidden;
+}
+
+.accordion__header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken(var.$brand-grey, 4%);
+    }
+}
+
+.accordion__title {
+    margin: 0;
+
+    font-size: inherit;
+    line-height: 1;
+}
+
+.accordion__icon {
+    margin-left: auto;
+    
+    color: var.$brand-black;
+
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+.accordion__header:hover .accordion__icon,
+.accordion__icon.isActive {
+    transform: rotate(90deg);
+}
+
+.accordion__content {
+    max-height: 0;
+    padding: 0 15px;
+
+    font-size: 14px;
+    
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.accordion__content.isActive {
+    max-height: 500px;
+    padding: 10px 15px 15px 15px;
+
+    opacity: 1;
+}
+
+@include var.tablet-size {
+
+    .accordion {
+        font-size: 16px;
+    }
+
+    .accordion__header {
+        padding: 20px 20px 20px 40px;
+    }
+
+    .accordion__content {
+        padding: 0 20px;
+    }
+
+    .accordion__content.isActive {
+        padding: 10px 20px 25px 40px;
+    }
+}

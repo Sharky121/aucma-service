@@ -3,7 +3,7 @@ import styles from './heading.module.scss';
 interface IHeading {
     subtitle: string;
     title: string;
-    children: string;
+    children?: string | React.ReactNode;
     customCssClass: string;
 }
 
@@ -14,9 +14,9 @@ const Heading = ({subtitle, title, children, customCssClass = ''}: IHeading) => 
             <h2 className={styles.heading__title}>{title}</h2>
             {
                 children && (
-                    <p className={styles.heading__desc}>
+                    <div className={styles.heading__desc}>
                         {children}
-                    </p>
+                    </div>
                 )
             }
         </div>
