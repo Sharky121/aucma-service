@@ -1,42 +1,41 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
-type YandexMapLang = 'ru_RU' | 'tr_TR' | 'en_US' | 'en_RU' | 'ru_UA' | 'uk_UA';
+interface YandexMapsProps {
+  query: {
+    apikey?: string;
+    lang: string;
+    load: string;
+  };
+  version: string;
+  children: React.ReactNode;
+}
 
-interface MapComponents {
-  YMaps: React.ComponentType<{
-    query: {
-      apikey?: string;
-      lang: YandexMapLang;
-      load: string;
-    };
-    version: string;
-    children: React.ReactNode;
-  }>;
-  Map: React.ComponentType<{
-    defaultState: {
-      center: [number, number];
-      zoom: number;
-      controls: string[];
-    };
-    className?: string;
-    modules: string[];
-    children: React.ReactNode;
-  }>;
-  Placemark: React.ComponentType<{
-    geometry: [number, number];
-    properties: {
-      balloonContent: string;
-    };
-    options: {
-      iconLayout: string;
-      iconImageHref: string;
-      iconImageSize: [number, number];
-      iconImageOffset: [number, number];
-    };
-    modules: string[];
-  }>;
+interface MapProps {
+  defaultState: {
+    center: [number, number];
+    zoom: number;
+    controls: string[];
+  };
+  className?: string;
+  modules: string[];
+  children: React.ReactNode;
+}
+
+interface PlacemarkProps {
+  geometry: [number, number];
+  properties: {
+    balloonContent: string;
+  };
+  options: {
+    iconLayout: string;
+    iconImageHref: string;
+    iconImageSize: [number, number];
+    iconImageOffset: [number, number];
+  };
+  modules: string[];
 }
 
 type YandexMapType = {
@@ -44,37 +43,26 @@ type YandexMapType = {
 }
 
 const YandexMap = ({customCssClass}: YandexMapType) => {
-  const [Map, setMap] = useState<MapComponents | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const loadMap = async () => {
-      try {
-        const { YMaps, Map, Placemark } = await import('@pbe/react-yandex-maps');
-        setMap({ YMaps, Map, Placemark });
-      } catch (error) {
-        console.error('Error loading Yandex Maps:', error);
-      }
-    };
-
-    loadMap();
+    setIsLoaded(true);
   }, []);
 
-  if (!Map) {
+  if (!isLoaded) {
     return <div>Загрузка карты...</div>;
   }
-
-  const { YMaps, Map: MapComponent, Placemark } = Map;
 
   return (
     <YMaps
       query={{
-        apikey: process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY,
-        lang: 'ru_RU' as YandexMapLang,
+        apikey: process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY as string,
+        lang: 'ru_RU',
         load: 'package.full'
       }}
       version="2.1"
     >
-      <MapComponent
+      <Map
         defaultState={{
           center: [55.721458, 37.781748],
           zoom: 16,
@@ -96,7 +84,7 @@ const YandexMap = ({customCssClass}: YandexMapType) => {
           }}
           modules={['geoObject.addon.balloon']}
         />
-      </MapComponent>
+      </Map>
     </YMaps>
   );
 };
