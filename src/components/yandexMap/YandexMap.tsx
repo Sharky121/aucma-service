@@ -3,16 +3,6 @@
 import { useEffect, useState } from 'react';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
-interface YandexMapsProps {
-  query: {
-    apikey?: string;
-    lang: string;
-    load: string;
-  };
-  version: string;
-  children: React.ReactNode;
-}
-
 type YandexMapType = {
   customCssClass?: string;
 }
