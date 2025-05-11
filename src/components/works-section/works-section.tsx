@@ -28,7 +28,7 @@ const WorksSection = () => {
     };
 
     return (
-        <section className={styles.works}>
+        <section id="works" className={styles.works}>
             <Container customClassName={styles.works__container}>
                 <Heading subtitle='Ремонт' title='Виды работ' customCssClass={styles.works__heading} />
             </Container>
