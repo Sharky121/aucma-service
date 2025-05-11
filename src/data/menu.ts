@@ -1,7 +1,7 @@
 export const menu = [
     {
       title: 'Виды работ',
-      link: '#works'
+      link: '/#works'
     },
     {
       title: 'Прайс-лист',
