@@ -23,10 +23,13 @@ export async function POST(req: NextRequest) {
         pass: process.env.SMTP_PASS, // Ваш SMTP пароль
       },
       tls: {
-        // Не проваливать при невалидном сертификате (если используете самоподписанный)
-        // В продакшене лучше иметь валидный сертификат
-        rejectUnauthorized: process.env.SMTP_REJECT_UNAUTHORIZED === 'true',
-      }
+        // ДЛЯ ОТЛАДКИ: Попробуйте установить в false, если у вас проблемы с SSL/TLS
+        // В продакшене должно быть process.env.SMTP_REJECT_UNAUTHORIZED === 'true' или просто true
+        rejectUnauthorized: false, 
+      },
+      // ДЛЯ ОТЛАДКИ: Добавьте это для более подробных логов от Nodemailer
+      logger: true,
+      debug: true 
     });
 
     const mailOptions = {
