@@ -1,11 +1,26 @@
+'use client';
+
+import { useState } from 'react';
 import Button from '../button/button';
+import Modal from '../modal/modal';
 import styles from './header-contacts.module.scss';
+import CallbackModal from '../callback-modal/callback-modal';
 
 interface IHeaderContacts {
     customClass?: string;
 }
 
 const HeaderContacts = ({customClass}: IHeaderContacts) => {
+    const [isModalOpen, setIsModalOpen] = useState(true);
+
+    const handleOpenModal = () => {
+      setIsModalOpen(true);
+    };
+  
+    const handleCloseModal = () => {
+      setIsModalOpen(false);
+    };
+  
     return (
         <div className={`${styles.headerContacts} ${customClass}`}>
             <a className={styles.headerContacts__mobilePhone} href="tel:+79005481212">
@@ -20,8 +35,14 @@ const HeaderContacts = ({customClass}: IHeaderContacts) => {
             </div>
             
             <div className={styles.headerContacts__callback}>
-                <Button type='button' color="danger" size='small'>Перезвоните</Button>
+                <Button type='button' color="danger" size='small' onClick={handleOpenModal}>Перезвоните</Button>
             </div>    
+
+            {isModalOpen && (
+                <Modal onClose={handleCloseModal} title="Перезвоните">
+                    <CallbackModal />
+                </Modal>
+            )}
         </div>
     )
 }

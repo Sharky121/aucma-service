@@ -1,0 +1,16 @@
+@use '../../styles/abstracts' as var;
+
+.callbackModal {
+    max-width: 480px;
+}
+
+.callbackModal__description {
+    margin-bottom: 20px;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.callbackModal__submit {
+    margin-top: 20px;
+}
