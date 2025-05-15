@@ -1,7 +1,6 @@
 'use client'
 
 import { useId } from 'react';
-import { IMaskInput } from 'react-imask';
 import styles from './form-input.module.scss';
 
 type FormInputType = {
