@@ -1,7 +1,6 @@
 import QuestionSection from '@/components/question-section/question-section';
 import Container from '@/components/container/container';
 import Heading from '@/components/heading/heading';
-import Button from '@/components/button/button';
 import PriceTable from '@/components/price-table/price-table';
 
 import styles from './page.module.scss';
@@ -17,10 +16,6 @@ export default function Price() {
         </Container>
           
         <PriceTable />
-        
-        <Container>
-          <Button customСlassName={styles.price__calc} color='danger'>Рассчитать стоимость</Button>
-        </Container>
       </section>
 
       <QuestionSection variant='dark'/>

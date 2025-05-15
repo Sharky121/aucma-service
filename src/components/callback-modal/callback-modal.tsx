@@ -55,10 +55,11 @@ const CallbackModal = () => {
                     <FormInput 
                         name='phone' 
                         label='Ваш номер телефона' 
-                        value={phone} // Связываем с состоянием
+                        value={phone}
                         onChange={handleInputChange} 
-                        type="tel" // Улучшаем семантику и UX для телефонных номеров
-                        isRequired // Делаем поле обязательным
+                        type="tel"
+                        isRequired
+                        mask="+7 (999) 999-99-99"
                     />
                 </div>
 

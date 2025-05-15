@@ -1,6 +1,5 @@
 'use client';
 
-// import Button from '../button/button';
 import Portal from '../portal/portal';
 import styles from './modal.module.scss';
 
@@ -9,17 +8,9 @@ type ModalType = {
     onClose: () => void;
     title: string;
     type?: string;
-    isCloseButton?: boolean;
 }
 
-// const ButtonParams = {
-//     color: 'primary',
-//     size: 'flex',
-//     title: 'Закрыть',
-//     customClassName: styles.calculationFormButton
-// }
-
-const Modal = ({children, onClose, title, type, isCloseButton = true}: ModalType) => {
+const Modal = ({children, onClose, title, type}: ModalType) => {
     const typeToClass: {
         [key: string]: string
     } = {
@@ -33,7 +24,7 @@ const Modal = ({children, onClose, title, type, isCloseButton = true}: ModalType
                 <div className={`${styles.modal} ${type ? typeToClass[type] :  ''}`}>
                     <div className={styles.modalWrapper}>
                         <button className={styles.modalClose} onClick={onClose}>
-                            <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" focusable="false">
+                            <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false">
                                 <use xlinkHref="#ico-cross" x="0" y="0"></use>
                             </svg>
                         </button>
@@ -43,13 +34,6 @@ const Modal = ({children, onClose, title, type, isCloseButton = true}: ModalType
                         <div className={styles.modalBody}>
                             {children}
                         </div>
-                        {
-                            isCloseButton && (
-                                <div className={styles.modalFooter}>
-                                    {/* <Button {...ButtonParams} onClick={onClose} type='button'/> */}
-                                </div>
-                            )
-                        }
                     </div>
                 </div>            
             </>

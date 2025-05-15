@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './button.module.scss';
 
 type ButtonSize = 'small' | 'medium' | 'large';
@@ -7,10 +8,11 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     size?: ButtonSize;
     color?: ButtonColor;
+    url?: string;
     customСlassName?: string;
 }
 
-const Button = ({children, size = 'medium', color = 'primary', customСlassName = '', ...props}: IButton) => {
+const Button = ({url = '', children, size = 'medium', color = 'primary', customСlassName = '', ...props}: IButton) => {
 
     const buttonClasses = [
         styles.button,
@@ -18,6 +20,14 @@ const Button = ({children, size = 'medium', color = 'primary', customСlassName 
         styles[`button--${color}`],
         customСlassName,
     ].filter(Boolean).join(' ');
+
+    if (url) {
+        return (
+            <Link className={buttonClasses} href={url}>
+                <span className={styles.button__text}>{children}</span>
+            </Link>
+        )
+    }
 
     return (
         <button className={buttonClasses} {...props}>

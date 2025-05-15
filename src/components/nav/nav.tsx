@@ -11,11 +11,11 @@ const Nav = ({customClass}: INav) => {
         <nav className={`${styles.nav} ${customClass}`}>
             <ul className={styles.navList}>
               {
-                menu.map((item: {title: string; link: string},index) => (
+                menu.map((item: {title: string; url: string},index) => (
                   <li key={index + item.title} className={styles.navItem}>
-                    <Link className={styles.navItemLink} href={item.link}>{item.title}</Link>
+                    <Link className={styles.navItemLink} href={item.url}>{item.title}</Link>
                   </li>
-                ))
+                ))  
               }
             </ul>
         </nav>

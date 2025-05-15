@@ -17,7 +17,7 @@ const FeaturesSection = ({customClassName}: IFeaturesSection) => {
                         Мы понимаем, что любой грузовик — это часть бизнеса, и его надежность напрямую влияет на успех. Поэтому мы уделяем особое внимание каждому техническому аспекту, начиная от замены деталей и заканчивая тщательной диагностикой. Клиенты отмечают нашу оперативность и высокую квалификацию специалистов, благодаря которым полуприцепы возвращаются в строй в кратчайшие сроки
                     </Heading>
 
-                    <Button type='button' color="danger" customСlassName={styles.features__more}>Подробнее о нас</Button>
+                    <Button type='button' color="danger" url="/about" customСlassName={styles.features__more}>Подробнее о нас</Button>
                 </div>
 
                 <ul className={styles.features__list}>

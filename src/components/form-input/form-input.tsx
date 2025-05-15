@@ -1,6 +1,7 @@
 'use client'
 
 import { useId } from 'react';
+import { IMaskInput } from 'react-imask';
 import styles from './form-input.module.scss';
 
 type FormInputType = {
@@ -11,27 +12,41 @@ type FormInputType = {
     name: string;
     label: string;
     type?: string;
-    onChange: (evt: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void;
+    onChange: (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    onBlur?: (evt: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-const FormInput = ({theme, name, label, type="text", onChange, isRequired = true, value }: FormInputType) => {
-    const id= useId();
+const FormInput = ({
+    theme,
+    name,
+    label,
+    type = "text",
+    onChange,
+    isRequired = true,
+    value,
+    onBlur
+}: FormInputType) => {
+    const id = useId();
 
     const themeStyle = `${theme ? styles[`theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`] : ''}`;
+    const inputClassName = `${styles.input} ${themeStyle}`;
 
     return (
         <>
             <label className="visually-hidden" htmlFor={name}>{label}</label>
-            <input className={`${styles.input} ${themeStyle}`} 
-                   id={id} 
-                   name={name} 
-                   type={type} 
-                   placeholder={label} 
-                   value={value} 
-                   onChange={onChange}
-                   required={isRequired} />
+            <input
+                className={inputClassName}
+                id={id}
+                name={name}
+                type={type}
+                placeholder={label}
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                required={isRequired}
+            />
         </>
-    )
+    );
 }
 
 export default FormInput;

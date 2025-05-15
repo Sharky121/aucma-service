@@ -5,7 +5,7 @@
 
     padding: 17px 35px;
 
-    color: var.$brand-black;
+    color: var.$brand-danger;
     font-size: 16px;
     font-weight: 700;
     line-height: 1;
@@ -22,6 +22,13 @@
         color: var.$brand-white;
 
         background-color: var.$brand-danger;
+    }
+
+    &:focus {
+        color: var.$brand-white;
+
+        background-color: var.$brand-danger;
+        text-decoration: none;
     }
 }
 

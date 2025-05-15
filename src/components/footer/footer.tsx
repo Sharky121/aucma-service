@@ -1,17 +1,35 @@
+'use client';
+
+import { useState } from 'react';
+
 import Link from 'next/link';
 import Image from 'next/image';
-import Container from '../container/container';
+
+import Container from '@/components/container/container';
+import Modal from '@/components/modal/modal';
+import CallbackModal from '@/components/callback-modal/callback-modal';
+import Button from '@/components/button/button';
 
 import { menu } from '@/data/menu';
+import { addressLine, email, phone } from '@/data/config';
 
 import styles from './footer.module.scss';
-import Button from '../button/button';
 
 interface IFooter {
   customClassName?: string;
 }
 
 const Footer = ({customClassName}: IFooter) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <footer className={`${styles.footer} ${customClassName}`}>
       <Container customClassName={styles.footerContainer}>
@@ -24,9 +42,9 @@ const Footer = ({customClassName}: IFooter) => {
           <div className={styles.footerNav}>
             <ul className={styles.footerNavList}>
               {
-                menu.map((item: {title: string; link: string},index) => (
+                menu.map((item: {title: string; url: string},index) => (
                   <li key={index + item.title} className={styles.footerNavItem}>
-                    <Link className={styles.footerNavLink} href={item.link}>{item.title}</Link>
+                    <Link className={styles.footerNavLink} href={item.url}>{item.title}</Link>
                   </li>
                 ))
               }
@@ -41,12 +59,12 @@ const Footer = ({customClassName}: IFooter) => {
               </div>
               <div className={styles.footerContactsItem}>
                 <dt className={styles.footerContactsTerm}>Контактные данные</dt>
-                <dd className={styles.footerContactsDesc}><a href="tel:+74951362612"><b>+7 (495) 136-26-12</b></a></dd>
-                <dd className={styles.footerContactsDesc}><a href="mailto:ooo.avtolyuks@list.ru">ooo.avtolyuks@list.ru</a></dd>
+                <dd className={styles.footerContactsDesc}><a href={`tel:+${phone.href}`}><b>{phone.value}</b></a></dd>
+                <dd className={styles.footerContactsDesc}><a href={`mailto:${email.href}`}>{email.value}</a></dd>
               </div>
               <div className={styles.footerContactsItem}>
                 <dt className={styles.footerContactsTerm}>Адрес</dt>
-                <dd className={styles.footerContactsDesc}>г. Москва, ул. Голубинская, <br />дом 4а, строение 1, 117574</dd>
+                <dd className={styles.footerContactsDesc}>{addressLine}</dd>
               </div>
             </dl>
           </div>
@@ -72,12 +90,18 @@ const Footer = ({customClassName}: IFooter) => {
           </div>
 
           <div className={styles.footerCallback}>
-              <Button type='button' color="danger" customСlassName={styles.footerCallbackButton}>Требуется ремонт</Button>
+              <Button type='button' color="danger" customСlassName={styles.footerCallbackButton} onClick={handleOpenModal}>Требуется ремонт</Button>
           </div>    
 
           <p className={styles.footerCopyright}>&copy; Autolux. Все права защищены</p>
 
       </Container>
+
+      {isModalOpen && (
+        <Modal onClose={handleCloseModal} title="Требуется ремонт">
+          <CallbackModal />
+        </Modal>
+      )}
     </footer>
   );
 };

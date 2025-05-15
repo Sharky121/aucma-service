@@ -146,6 +146,11 @@
     .priceTab__list {
         gap: 20px;
     }
+
+    .price__calc {
+        width: auto;
+        margin-top: 60px;
+    }
 }
 
 @include var.desktop-size {

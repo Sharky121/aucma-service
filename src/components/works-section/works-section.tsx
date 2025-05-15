@@ -10,10 +10,21 @@ import Heading from "../heading/heading";
 import styles from './works-section.module.scss';
 import { useEffect, useState } from "react";
 import Button from "../button/button";
+import Modal from "../modal/modal";
+import CallbackModal from "../callback-modal/callback-modal";
 
 const WorksSection = () => {
     const [activeTab, setActiveTab] = useState('repairsIso');
     const [activeRepair, setActiveRepair] = useState(repairsIso[0]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
 
     useEffect(() => {
         setActiveRepair(activeTab === 'repairsIso' ? repairsIso[0] : repairsSemi[0]);
@@ -67,13 +78,19 @@ const WorksSection = () => {
             <div className={`${styles.works__actions} ${styles.tabs}`}>
                 <ul className={styles.tabs__list}>
                     <li className={styles.tabs__item}>
-                        <Button color="danger" customСlassName={styles.tabs__button}>Рассчитать стоимость</Button>
+                        <Button color="danger" customСlassName={styles.tabs__button} onClick={handleOpenModal}>Рассчитать стоимость</Button>
                     </li>
                     <li className={styles.tabs__item}>
-                        <Button customСlassName={styles.tabs__button}>Прайс-лист</Button>
+                        <Button customСlassName={styles.tabs__button} url="/price">Прайс-лист</Button>
                     </li>
                 </ul>
             </div>
+
+            {isModalOpen && (
+                <Modal onClose={handleCloseModal} title="Рассчитать стоимость">
+                    <CallbackModal />
+                </Modal>
+            )}
         </section>
     );
 };

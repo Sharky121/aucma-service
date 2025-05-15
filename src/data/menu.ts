@@ -1,18 +1,18 @@
 export const menu = [
     {
       title: 'Виды работ',
-      link: '/#works'
+      url: '/#works'
     },
     {
       title: 'Прайс-лист',
-      link: 'price'
+      url: 'price'
     },
     {
       title: 'О нас',
-      link: 'about'
+      url: 'about'
     },
     {
       title: 'Контакты',
-      link: 'contacts'
+      url: 'contacts'
     },
 ];

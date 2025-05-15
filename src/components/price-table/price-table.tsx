@@ -1,11 +1,15 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import styles from './price-table.module.scss';
+
+import Button from '@/components/button/button';
+import Container from '@/components/container/container';
+import Modal from '@/components/modal/modal';
+import CallbackModal from '@/components/callback-modal/callback-modal';
 
 import { prices } from '@/data/prices';
-import Button from '../button/button';
-import Container from '../container/container';
+
+import styles from './price-table.module.scss';
 
 type PriceItem = {
     title: string;
@@ -15,6 +19,15 @@ type PriceItem = {
 const PriceTable = () => {
     const [priceTable, setPriceTable] = useState<PriceItem[]>([]);
     const [activeTab, setActiveTab] = useState<'izo' | 'semi'>('izo');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
 
     const toggleTableHandle = useCallback((type: 'izo' | 'semi') => {
         const items = prices.find(item => item.type === type)?.items || [];
@@ -60,7 +73,15 @@ const PriceTable = () => {
                     </tbody>
                     </table>
                 </div>
+
+                <Button customСlassName={styles.price__calc} color='danger' onClick={handleOpenModal}>Рассчитать стоимость</Button>
             </Container>
+
+            {isModalOpen && (
+                <Modal onClose={handleCloseModal} title="Рассчитать стоимость">
+                    <CallbackModal />
+                </Modal>
+            )}
         </>
     )
 }

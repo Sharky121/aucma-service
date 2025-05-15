@@ -12,7 +12,7 @@
 
     background-color: var.$brand-black;
 
-    z-index: 9998;
+    z-index: var.$z-index-modal-backdrop;
     opacity: 0.5;
 }
 
@@ -30,7 +30,7 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 
-    z-index: 9999;
+    z-index: var.$z-index-modal;
 }
 
 .modalWrapper {
@@ -58,11 +58,7 @@
 .modalTitle {
     margin: 0;
 
-    text-transform: uppercase;
-}
-
-.modalFooter {
-    margin-top: 30px;
+    font-size: 24px;
 }
 
 @include var.tablet-size {
@@ -79,7 +75,7 @@
     }
 
     .modalClose {
-        top: 15px;
+        top: 19px;
         right: 15px;
     }
 
@@ -88,10 +84,6 @@
     }
 
     .modalWrapper {
-        padding: 45px;
-    }
-
-    .modalTitle {
-        font-size: 28px;
+        padding: 25px;
     }
 }

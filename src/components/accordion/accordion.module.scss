@@ -1,3 +1,4 @@
+@use "sass:color";
 @use '../../styles/abstracts' as var;
 
 .accordion {
@@ -20,7 +21,7 @@
     cursor: pointer;
 
     &:hover {
-        background-color: darken(var.$brand-grey, 4%);
+        background-color: color.scale(var.$brand-grey, $lightness: -4%)
     }
 }
 

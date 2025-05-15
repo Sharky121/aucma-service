@@ -29,4 +29,8 @@ $retina-dppx: 1.5dppx;
 
 // z-index
 $z-index-header: 4;
-$z-index-modal: 5;
+$z-index-modal-backdrop: 5;
+$z-index-modal: 6;
+$z-index-backdrop: 7;
+$z-index-side-bar: 8;
+
