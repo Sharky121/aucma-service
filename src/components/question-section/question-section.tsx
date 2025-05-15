@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 import FormInput from '../form-input/form-input';
 import Container from '../container/container';
@@ -8,6 +8,8 @@ import Button from '../button/button';
 
 import styles from './question-section.module.scss';
 import Heading from '../heading/heading';
+import Modal from '../modal/modal';
+import ModalStatus from '../modal/modal-status';
 
 interface IQuestionSection {
     customClassName?: string;
@@ -15,10 +17,58 @@ interface IQuestionSection {
 }
 
 const QuestionSection = ({customClassName, variant = 'default'}: IQuestionSection) => {
-    const [formData, setFormData] = useState({
-        formType: 'question',
-        phone: '',
-    });
+    const [phone, setPhone] = useState('');
+    const [message, setMessage] = useState(''); // Для отображения сообщений пользователю
+    const [isLoading, setIsLoading] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+      setIsModalOpen(true);
+    };
+  
+    const handleCloseModal = () => {
+      setIsModalOpen(false);
+    };
+
+    const handleInputChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setPhone(evt.target.value);
+    };
+
+    const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
+        evt.preventDefault();
+        setIsLoading(true);
+        setMessage('');
+
+        if (!phone.trim()) {
+            setMessage('Пожалуйста, введите номер телефона.');
+            setIsLoading(false);
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/send-callback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ phone }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                handleOpenModal()
+                setMessage('Спасибо! Ваш запрос отправлен. Мы скоро свяжемся с вами.');
+                setPhone(''); // Очистить поле после успешной отправки
+            } else {
+                setMessage(result.error || 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже.');
+            }
+        } catch (error) {
+            console.error('Ошибка отправки формы:', error);
+            setMessage('Произошла сетевая ошибка. Пожалуйста, проверьте ваше подключение и попробуйте позже.');
+        }
+        setIsLoading(false);
+    };
 
     const questionSectionCssClass = [
         styles.questions,
@@ -26,13 +76,6 @@ const QuestionSection = ({customClassName, variant = 'default'}: IQuestionSectio
         customClassName
     ].join(' ');
     
-    const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
-        setFormData({
-            ...formData, 
-            [evt.target.name]: evt.target.value
-        })
-    }
-
     return (
         <section className={questionSectionCssClass}>
             <Container customClassName={styles.questions__container}>
@@ -44,10 +87,21 @@ const QuestionSection = ({customClassName, variant = 'default'}: IQuestionSectio
                     <div className={styles.questionsForm__field}>
                         <FormInput name='phone' label='  Ваш номер телефона' onChange={handleInputChange} />
                     </div>
-
-                    <Button type='button' color="danger" customСlassName={styles.questionsForm__submit}>Давайте поговорим!</Button>
+                    {
+                        isLoading ? (
+                            <p className={styles.questionsForm__loading}>Отправка сообщение...</p>
+                        ) : (
+                            <Button type='button' color="danger" customСlassName={styles.questionsForm__submit} onClick={handleSubmit}>Давайте поговорим!</Button>
+                        )
+                    }
                 </form>
             </Container>
+
+            {isModalOpen && (
+                <Modal onClose={handleCloseModal} title="Спасибо!">
+                    <ModalStatus text={message} />
+                </Modal>
+            )}
         </section>
     )
 }

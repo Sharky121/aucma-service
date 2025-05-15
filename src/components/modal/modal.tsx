@@ -10,18 +10,13 @@ type ModalType = {
     type?: string;
 }
 
-const Modal = ({children, onClose, title, type}: ModalType) => {
-    const typeToClass: {
-        [key: string]: string
-    } = {
-        "status": styles.modalStatus
-    }
+const Modal = ({children, onClose, title}: ModalType) => {
 
     return (
         <Portal>
             <>
                 <div className={styles.modalBackdrop} onClick={onClose}></div>
-                <div className={`${styles.modal} ${type ? typeToClass[type] :  ''}`}>
+                <div className={styles.modal}>
                     <div className={styles.modalWrapper}>
                         <button className={styles.modalClose} onClick={onClose}>
                             <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false">

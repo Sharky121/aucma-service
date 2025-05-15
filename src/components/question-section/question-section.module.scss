@@ -49,6 +49,11 @@
     width: 100%;
 }
 
+.questionsForm__loading {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
 @include var.tablet-size {
 
     .questions {
