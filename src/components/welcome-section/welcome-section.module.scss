@@ -1,0 +1,101 @@
+@use '../../styles/abstracts' as var;
+
+.welcome {
+    position: relative;
+    background-image: url('/home_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+    overflow: hidden;
+  
+    &::before {
+      content: '';
+  
+      position: absolute;
+      top: 0;
+      left: 0;
+  
+      width: 100%;
+      height: 100%;
+  
+      background-color: rgba(var.$brand-black, 0.5);
+      z-index: 1;
+    }
+}
+
+.welcome__container {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    position: relative;
+    z-index: 2;
+}
+
+.welcome__content {
+    padding: 20px 30px;
+
+    color: var.$brand-white;
+
+    background-color: rgba(var.$brand-black, 0.9);
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.welcome__title {
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    span {
+        font-size: 40px;
+    }
+}
+
+.welcome__description {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.welcome__button {
+    width: 100%;
+}
+
+@include var.tablet-size {
+
+    .welcome__container {
+        padding-top: 140px;
+        padding-bottom: 140px;
+    }
+
+    .welcome__content {
+        width: 640px;
+        padding: 40px;
+    }
+
+    .welcome__title {
+        margin-bottom: 30px;
+
+        font-size: 26px;
+    
+        span {
+            display: block;
+            margin-bottom: 30px;
+            
+            font-size: 80px;
+            font-weight: 900;
+            line-height: 1;
+        }
+    }
+
+    .welcome__description {
+        font-size: 16px;
+    }
+
+    .welcome__button {
+        width: auto;
+    }
+    
+}
