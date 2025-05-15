@@ -85,7 +85,7 @@ const QuestionSection = ({customClassName, variant = 'default'}: IQuestionSectio
 
                 <form className={styles.questionsForm} onSubmit={handleSubmit}>
                     <div className={styles.questionsForm__field}>
-                        <FormInput name='phone' label='  Ваш номер телефона' onChange={handleInputChange} />
+                        <FormInput name='phone' label='Ваш номер телефона' mask='+7 ### ### ## ##' onChange={handleInputChange} />
                     </div>
                     {
                         isLoading ? (

@@ -41,7 +41,7 @@ const HeaderContacts = ({customClass}: IHeaderContacts) => {
             </div>    
 
             {isModalOpen && (
-                <Modal onClose={handleCloseModal} title="Перезвоните">
+                <Modal onClose={handleCloseModal} title="Обратный звонок">
                     <CallbackModal />
                 </Modal>
             )}
