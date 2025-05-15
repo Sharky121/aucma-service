@@ -83,7 +83,7 @@ const QuestionSection = ({customClassName, variant = 'default'}: IQuestionSectio
                     Если у вас остались вопросы или требуется дополнительная информация, не стесняйтесь обращаться к нам. Мы всегда рады помочь вам и готовы ответить на все ваши запросы!
                 </Heading>
 
-                <form className={styles.questionsForm} action="">
+                <form className={styles.questionsForm} onSubmit={handleSubmit}>
                     <div className={styles.questionsForm__field}>
                         <FormInput name='phone' label='  Ваш номер телефона' onChange={handleInputChange} />
                     </div>
@@ -91,7 +91,7 @@ const QuestionSection = ({customClassName, variant = 'default'}: IQuestionSectio
                         isLoading ? (
                             <p className={styles.questionsForm__loading}>Отправка сообщение...</p>
                         ) : (
-                            <Button type='button' color="danger" customСlassName={styles.questionsForm__submit} onClick={handleSubmit}>Давайте поговорим!</Button>
+                            <Button type='submit' color="danger" customСlassName={styles.questionsForm__submit}>Давайте поговорим!</Button>
                         )
                     }
                 </form>
