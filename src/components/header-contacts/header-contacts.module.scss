@@ -32,6 +32,15 @@
         font-weight: 800;
         font-size: 26px;
         line-height: 1;
+
+        &:hover,
+        &:active {
+            color: var.$brand-danger;
+        }
+      
+        &:focus {
+            color: var.$brand-danger;
+        }  
     }
 
     .headerContacts__address {

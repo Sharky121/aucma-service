@@ -6,6 +6,7 @@ import Modal from '../modal/modal';
 import styles from './header-contacts.module.scss';
 import CallbackModal from '../callback-modal/callback-modal';
 import { addressLine, phone } from '@/data/config';
+import Link from 'next/link';
 
 interface IHeaderContacts {
     customClass?: string;
@@ -31,7 +32,7 @@ const HeaderContacts = ({customClass}: IHeaderContacts) => {
             </a>
 
             <div className={styles.headerContacts__info}>
-                <a className={styles.headerContacts__desktopPhone} href={`tel:+${phone.href}`}>{phone.value}</a>
+                <Link className={styles.headerContacts__desktopPhone} href={`tel:+${phone.href}`}>{phone.value}</Link>
                 <address className={styles.headerContacts__address}>{addressLine}</address>
             </div>
             
